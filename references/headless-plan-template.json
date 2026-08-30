@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "repo_root": "REPLACE_WITH_ABSOLUTE_TARGET_REPOSITORY",
+  "branch": "REPLACE_WITH_CURRENT_BRANCH",
+  "run_name": "replace_with_run_name",
+  "commit_mode": "prepare-commit-command-only",
+  "allow_dirty_approved_continuation": false,
+  "max_followups_per_phase": 0,
+  "global_unrelated_dirty_policy": "block_on_overlap",
+  "phases": [
+    {
+      "id": "phase_1",
+      "name": "Phase 1 - REPLACE_WITH_PHASE_NAME",
+      "objective": "REPLACE_WITH_ONE_BOUNDED_IMPLEMENTATION_OBJECTIVE",
+      "non_goals": [
+        "REPLACE_WITH_AN_EXPLICIT_NON_GOAL"
+      ],
+      "read_first": [
+        "REPLACE_WITH_PRIMARY_FILE_OR_DIRECTORY/"
+      ],
+      "allowed_write_paths": [
+        "REPLACE_WITH_ALLOWED_WRITE_PATH/"
+      ],
+      "expected_dirty_paths": [],
+      "forbidden_paths": [
+        "REPLACE_WITH_FORBIDDEN_PATH/"
+      ],
+      "validation": [
+        {
+          "id": "git_diff_check",
+          "argv": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "cwd": ".",
+          "required": true,
+          "timeout_seconds": 60
+        },
+        {
+          "id": "git_staged_files_check",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--quiet"
+          ],
+          "cwd": ".",
+          "required": true,
+          "timeout_seconds": 60
+        },
+        {
+          "id": "git_status_snapshot",
+          "argv": [
+            "git",
+            "status",
+            "--short",
+            "--branch"
+          ],
+          "cwd": ".",
+          "required": true,
+          "timeout_seconds": 60
+        }
+      ],
+      "manual_checks": [
+        {
+          "id": "review_phase_diff",
+          "description": "Review every changed in-scope file, validation result, and residual risk before approving a targeted commit.",
+          "blocking": false
+        }
+      ],
+      "commit_message": "REPLACE_WITH_CONCISE_IMPERATIVE_COMMIT_MESSAGE"
+    }
+  ]
+}
