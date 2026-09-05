@@ -5,6 +5,14 @@ description: Orchestrate phased repository work with headless executors while th
 
 # Phase Gate Orchestrator
 
+## Prerequisites
+
+The packaged execution workflows require **Python 3.8+**. Both scripts use only the Python standard library; no `pip` packages or `requirements.txt` are needed.
+
+Before launching either script, check for a working interpreter with `python3 --version`, `python --version`, or, on Windows, `py -3 --version`. Use the command or interpreter path that succeeds and reports Python 3.8 or newer in place of `python` in the examples below.
+
+If no compatible interpreter is detected, tell the user that Python is required and ask them to install it or provide the path to an existing installation. Planning and manual handoffs can continue, but verify the interpreter before launching either packaged script.
+
 ## Choose The Workflow
 
 - **Default: agent-led orchestration.** The orchestrator creates the plan, launches headless executors, reviews and approves their work, handles commits directly, and continues through every phase. The orchestrator controls the loop and can adapt the plan within the user's scope.
