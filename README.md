@@ -1,5 +1,7 @@
 # Phase Gate Orchestrator
 
+Great for initial buildouts, but really shines when you need safe refactoring or adding new features to mature projects without breaking them.
+
 Give your main agent a task. By default, it manages the work from planning through commits:
 
 1. **Plan:** split the task into manageable phases.
