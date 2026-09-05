@@ -1,4 +1,4 @@
 interface:
   display_name: "Phase Gate Orchestrator"
-  short_description: "Gate executor work with review and resume checks"
-  default_prompt: "Use $phase-gate-orchestrator to run a bounded implementation phase against an explicit target repository with packaged scripts, semantic review, and a targeted commit gate."
+  short_description: "Plan, review, and commit work with headless executors"
+  default_prompt: "Use $phase-gate-orchestrator to create and complete a phased plan in the target repository, launching headless executors while you review their code, request repairs, commit approved work, and continue through every phase."
