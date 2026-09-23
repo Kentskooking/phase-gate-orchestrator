@@ -39,7 +39,7 @@ DEFAULT_OUTPUT_DIR = Path(".phase-gate")
 DEFAULT_VALIDATION_TIMEOUT_SECONDS = 300
 DEFAULT_OUTPUT_EXCERPT_CHARS = 4000
 DEFAULT_EXECUTOR_RELAY_MODE = "local_exec"
-SUPPORTED_EXECUTOR_MODELS = ("gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna")
+SUPPORTED_EXECUTOR_MODELS = ("gpt-6-sol", "gpt-6-luna")
 DEFAULT_EXECUTOR_LOCAL_TIMEOUT_SECONDS = 900
 DEFAULT_EXECUTOR_LOCAL_REASONING_EFFORT = "xhigh"
 DEFAULT_EXECUTOR_LOCAL_SERVICE_TIER = "fast"
@@ -4778,9 +4778,9 @@ def _build_parser() -> argparse.ArgumentParser:
         choices=SUPPORTED_EXECUTOR_MODELS,
         default=None,
         help=(
-            "Required for local_exec. Select explicitly by difficulty: gpt-5.6-sol "
-            "for the most difficult work, gpt-5.6-terra for moderate or unclear "
-            "difficulty, or gpt-5.6-luna for straightforward work."
+            "Required for local_exec. Select explicitly by difficulty: gpt-6-sol "
+            "for moderate through the most difficult work or unclear difficulty, "
+            "or gpt-6-luna for straightforward work."
         ),
     )
     parser.add_argument(
@@ -4830,7 +4830,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "--reviewer-model",
         choices=SUPPORTED_EXECUTOR_MODELS,
         default=None,
-        help="Explicit GPT-5.6 reviewer tier required for model_review.",
+        help="Explicit GPT-6 reviewer tier required for model_review.",
     )
     parser.add_argument(
         "--reviewer-local-reasoning-effort",
@@ -4903,8 +4903,8 @@ def _ensure_resume_semantic_review_mode(
 def _validate_semantic_review_runtime_args(args: argparse.Namespace) -> None:
     if args.executor_relay_mode == "local_exec" and not args.executor_model:
         raise PhaseGateError(
-            "--executor-model is required for local_exec; select gpt-5.6-sol, "
-            "gpt-5.6-terra, or gpt-5.6-luna by phase difficulty"
+            "--executor-model is required for local_exec; select gpt-6-sol "
+            "or gpt-6-luna by phase difficulty"
         )
     if args.semantic_review_mode == "model_review" and not args.reviewer_model:
         raise PhaseGateError("--reviewer-model is required for model_review")

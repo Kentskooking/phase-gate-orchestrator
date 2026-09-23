@@ -28,7 +28,7 @@ relay = load_script_module("relay_headless_codex_test_module", "relay_headless_c
 
 
 class PackagedScriptResolutionTests(unittest.TestCase):
-    def executor_args(self, model: str = "gpt-5.6-terra") -> argparse.Namespace:
+    def executor_args(self, model: str = "gpt-6-sol") -> argparse.Namespace:
         return argparse.Namespace(
             executor_model=model,
             executor_local_sandbox="workspace-write",
@@ -68,10 +68,10 @@ class PackagedScriptResolutionTests(unittest.TestCase):
                 prompt_file=repo_root / "prompt.md",
                 output_file=repo_root / "result.json",
                 local_artifacts_dir=repo_root / "artifacts",
-                args=self.executor_args("gpt-5.6-sol"),
+                args=self.executor_args("gpt-6-sol"),
             )
 
-            self.assertEqual(command[command.index("--model") + 1], "gpt-5.6-sol")
+            self.assertEqual(command[command.index("--model") + 1], "gpt-6-sol")
             self.assertEqual(command[command.index("--repo-root") + 1], str(repo_root))
             self.assertEqual(
                 command[command.index("--local-reasoning-effort") + 1], "xhigh"
@@ -82,7 +82,7 @@ class PackagedScriptResolutionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary_directory:
             repo_root = Path(temporary_directory)
             args = argparse.Namespace(
-                reviewer_model="gpt-5.6-luna",
+                reviewer_model="gpt-6-luna",
                 reviewer_local_reasoning_effort="xhigh",
                 reviewer_local_service_tier="fast",
                 reviewer_codex_bin="codex",
@@ -97,7 +97,7 @@ class PackagedScriptResolutionTests(unittest.TestCase):
             )
 
             self.assertEqual(Path(command[1]), phase_gate.packaged_relay_script_path())
-            self.assertEqual(command[command.index("--model") + 1], "gpt-5.6-luna")
+            self.assertEqual(command[command.index("--model") + 1], "gpt-6-luna")
             self.assertEqual(
                 command[command.index("--local-reasoning-effort") + 1], "xhigh"
             )
@@ -129,7 +129,7 @@ class RelayCommandTests(unittest.TestCase):
             repo_root = Path(temporary_directory)
             command = relay._build_local_exec_command(
                 codex_bin="codex",
-                model="gpt-5.6-terra",
+                model="gpt-6-sol",
                 sandbox="workspace-write",
                 reasoning_effort="xhigh",
                 service_tier="fast",
@@ -138,7 +138,7 @@ class RelayCommandTests(unittest.TestCase):
                 skip_git_repo_check=True,
             )
 
-            self.assertEqual(command[command.index("--model") + 1], "gpt-5.6-terra")
+            self.assertEqual(command[command.index("--model") + 1], "gpt-6-sol")
             self.assertIn("model_reasoning_effort=xhigh", command)
             self.assertIn("service_tier=fast", command)
             self.assertEqual(command[command.index("--cd") + 1], str(repo_root.resolve()))

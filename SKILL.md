@@ -37,7 +37,7 @@ python "<installed-skill-directory>/scripts/relay_headless_codex.py" \
   --repo-root "/absolute/path/to/target-repository" \
   --prompt-file "/absolute/path/to/phase-prompt.md" \
   --output-file "/absolute/path/to/phase-result.json" \
-  --model <selected-gpt-5.6-tier> \
+  --model <selected-gpt-6-tier> \
   --local-sandbox workspace-write \
   --local-reasoning-effort xhigh \
   --local-service-tier fast \
@@ -71,21 +71,20 @@ Infer missing details from conversation history and live Git state. Ask only whe
 
 Honor an executor model or tier explicitly requested by the user until the user changes or withdraws it. Otherwise choose per phase:
 
-- `gpt-5.6-sol` for the most difficult, ambiguous, high-risk, or cross-cutting work
-- `gpt-5.6-terra` for moderately difficult work and when difficulty is unclear
-- `gpt-5.6-luna` for straightforward, narrow, low-risk, or mechanical work
+- `gpt-6-sol` for moderately difficult through the most difficult work, ambiguous, high-risk, or cross-cutting work, and when difficulty is unclear
+- `gpt-6-luna` for straightforward, narrow, low-risk, or mechanical work
 
 For direct relay runs, pass the selected model explicitly with `--model`, `--local-reasoning-effort xhigh`, and `--local-service-tier fast` as above. When using the scripted runner, the equivalent flags are:
 
 ```text
---executor-model <selected-gpt-5.6-tier>
+--executor-model <selected-gpt-6-tier>
 --executor-local-reasoning-effort xhigh
 --executor-local-service-tier fast
 ```
 
 Do not rely on a default model. If the installed Codex CLI rejects `xhigh` or `fast`, stop before substantial executor work and report the incompatibility; do not silently downgrade.
 
-For the scripted runner's `model_review`, also select and pass an explicit GPT-5.6 reviewer tier with `--reviewer-model`, `--reviewer-local-reasoning-effort xhigh`, and `--reviewer-local-service-tier fast`. Prefer `manual_artifact` unless the user requests model review; in that mode the orchestrator reviews and writes the verdict artifact.
+For the scripted runner's `model_review`, also select and pass an explicit GPT-6 reviewer tier with `--reviewer-model`, `--reviewer-local-reasoning-effort xhigh`, and `--reviewer-local-service-tier fast`. Prefer `manual_artifact` unless the user requests model review; in that mode the orchestrator reviews and writes the verdict artifact.
 
 ## Prepare A Scripted Headless Run (Optional)
 
@@ -105,7 +104,7 @@ python "<installed-skill-directory>/scripts/phase_gate_headless.py" \
   --output-dir ".phase-gate/my-run" \
   --executor-relay-mode local_exec \
   --executor-local-sandbox workspace-write \
-  --executor-model gpt-5.6-terra \
+  --executor-model gpt-6-sol \
   --executor-local-reasoning-effort xhigh \
   --executor-local-service-tier fast \
   --semantic-review-mode manual_artifact \
@@ -131,7 +130,7 @@ python "<installed-skill-directory>/scripts/phase_gate_headless.py" \
   --resume "/absolute/path/to/phase_gate_state.json" \
   --repo-root "/absolute/path/to/target-repository" \
   --expected-commit-hash "<approved-commit-hash>" \
-  --executor-model gpt-5.6-terra \
+  --executor-model gpt-6-sol \
   --executor-local-reasoning-effort xhigh \
   --executor-local-service-tier fast \
   --json

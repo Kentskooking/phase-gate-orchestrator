@@ -32,7 +32,7 @@ Review and commit each completed phase, and continue until the plan is finished.
 - **Git** and an authenticated **Codex CLI** available to the agent.
 - The target project's tools for builds and tests.
 
-The agent checks for Python before launching scripts and tells you if it is missing. It selects an executor model based on the task: `gpt-5.6-luna`, `gpt-5.6-terra`, or `gpt-5.6-sol`.
+The agent checks for Python before launching scripts and tells you if it is missing. It selects an executor model based on the task: `gpt-6-luna` or `gpt-6-sol`.
 
 ## Optional workflows
 

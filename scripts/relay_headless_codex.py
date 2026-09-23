@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
 
 
-SUPPORTED_MODELS = ("gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna")
+SUPPORTED_MODELS = ("gpt-6-sol", "gpt-6-luna")
 DEFAULT_LOCAL_TIMEOUT_SECONDS = 900
 DEFAULT_LOCAL_REASONING_EFFORT = "xhigh"
 DEFAULT_LOCAL_SERVICE_TIER = "fast"
@@ -52,8 +52,8 @@ def _build_parser() -> argparse.ArgumentParser:
         required=True,
         choices=SUPPORTED_MODELS,
         help=(
-            "Explicit GPT-5.6 executor tier selected for the task: sol for the most "
-            "difficult work, terra for moderate or unclear difficulty, or luna for "
+            "Explicit GPT-6 executor tier selected for the task: sol for moderate "
+            "through the most difficult work or unclear difficulty, or luna for "
             "straightforward work."
         ),
     )

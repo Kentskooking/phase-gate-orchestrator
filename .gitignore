@@ -1,0 +1,23 @@
+# Keep the published skill layout; other root files and directories stay local.
+/*
+!/.gitignore
+!/LICENSE
+!/README.md
+!/SKILL.md
+!/agents/
+!/references/
+!/scripts/
+!/tests/
+
+# Workstation-only setup helper inside a published directory
+/scripts/setup-python.ps1
+
+# Python bytecode and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
